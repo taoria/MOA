@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Code.Dialog;
 using GameComp.System.MapSystem;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -10,7 +11,16 @@ namespace GameComp.System.LifeCycleSystem {
 	[CreateAssetMenu(menuName =  "GameCom/LifeCycleController")]
 	public class LifeCycle : ScriptableObject {
 		public GameLoader GameLoader;
-		public static LifeCycle Instance;
+		private static LifeCycle _instance;
+		public static LifeCycle Instance {
+			get {                 
+				if (_instance == null) {
+					_instance = Resources.Load<LifeCycle>("System/"+nameof(LifeCycle));
+				}
+				return _instance; 
+			}
+			set { _instance = value; }
+		}
 		private void OnEnable() {
 			if (LifeCycle.Instance == null) {
 				Instance = this;

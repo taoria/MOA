@@ -8,16 +8,24 @@ namespace Code.Dialog {
         private DialogPool _dialogPools;
         private Dictionary<string, DialogueNode> _dialogueNodes;
         private Dictionary<string, DialogueNodeTransefer> _dialogueNodeTransefers;
-        public static DialogueSystem Instance;
+        private static DialogueSystem _instance;
+
+        public static DialogueSystem Instance {
+            get {                 
+                if (_instance == null) {
+                _instance = Resources.Load<DialogueSystem>("System/"+nameof(DialogueSystem));
+                }
+                return _instance; 
+            }
+            set { _instance = value; }
+        }
+
         private void OnEnable() {
-            if (Instance == null)
-                Instance = this;
             _dialogPools = new DialogPool();
             _dialogPools.DialogueNodes = new List<DialogueNode>();
             _dialogueNodeTransefers = new Dictionary<string, DialogueNodeTransefer>();
             _dialogueNodes = new Dictionary<string, DialogueNode>();
             LoadDialogue();
-        
         }
 
         private void Load() {

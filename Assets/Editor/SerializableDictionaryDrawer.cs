@@ -1,7 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
- 
+/// <summary>
+///
+/// copy from wiki
+/// 
+/// </summary>
+/// <see cref="http://wiki.unity3d.com/index.php/SerializableDictionary"/>
+/// <typeparam name="K"></typeparam>
+/// <typeparam name="V"></typeparam>
 public abstract class SerializableKeyValueTemplate<K, V> : ScriptableObject {
     public K key;
     public V value;

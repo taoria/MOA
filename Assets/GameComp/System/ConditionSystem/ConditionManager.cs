@@ -4,9 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //条件管理器
+[CreateAssetMenu(menuName = "GameCom/ConditionMananger")]
 public class ConditionManager : ScriptableObject {
-	public ConditionManager Instance;
+	public static ConditionManager Instance {
+		get {                 
+			if (_instance == null) {
+				_instance = Resources.Load<ConditionManager>("System/"+nameof(ConditionManager));
+			}
+			return _instance; 
+		}
+		set { _instance = value; }
+	}
 	private Dictionary<string, ConditionFunction> _conditionPool;
+	private static ConditionManager _instance;
+
 	private void OnEnable() {
 		if (Instance == null)
 			Instance = this;

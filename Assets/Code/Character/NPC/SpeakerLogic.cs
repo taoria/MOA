@@ -11,22 +11,30 @@ public class SpeakerLogic : MonoBehaviour {
 	private bool touching = false;
 	public NormalCharacter speakTo { get; set; }
 	public NormalCharacter me { get; set; }
+
+	public void ResetDialog() {
+		CurrentNode = DialogueSystem.Instance.GetNode("ChiefMain");
+	}
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.name.Equals("Hero")) {
 			speakTo = other.gameObject.GetComponent<NormalCharacter>();
+			ResetDialog();
 			me = this.gameObject.transform.parent.gameObject.GetComponent<NormalCharacter>();
 			DialogWatcher.Instance.SetDialogContent(this);
+			GetComponent<SpriteRenderer>().color = new Color(1f,1f,0.5f,0.5f);
 		}
 	}
 	public void Start() {
 		Debug.Log(DialogueSystem.Instance);
-		CurrentNode = DialogueSystem.Instance.GetNode("ChiefHelloWorld");
+		CurrentNode = DialogueSystem.Instance.GetNode("ChiefMain");
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f,0.5f,0f);
 	}
 	private void OnTriggerExit2D(Collider2D other) {
 		if (other.gameObject.name.Equals("Hero")) {
 			speakTo = null;
 			DialogWatcher.Instance.ReleaseContent(this);
 		}
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f,0.5f,0f);
 	}
 	private void GetResult(int x) {
 		
@@ -55,9 +63,8 @@ public class SpeakerLogic : MonoBehaviour {
 			CurrentNode = dl;
 			return true;
 		}
-		else {
-			return false;			
-		}
+
+		return false;
 	}
 	void Update () {
 	}

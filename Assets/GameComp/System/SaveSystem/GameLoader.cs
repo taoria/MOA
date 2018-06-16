@@ -17,7 +17,18 @@ public class LoadConfig:ScriptableObject {
 public class GameLoader : ScriptableObject {
 	public float LoadingProgress;
 	public string LoadingState;
-	public static GameLoader Instance;
+	private static GameLoader _instance;
+	public static GameLoader Instance {
+		get {
+			if (_instance == null) {
+				_instance = Resources.Load<GameLoader>("System/"+nameof(GameLoader));
+			}
+			return _instance;
+		}
+		set { _instance = value; }
+	}
+	
+
 	public LoadConfig LoadConfig;
 	private void OnEnable() {
 		if (Instance == null) {

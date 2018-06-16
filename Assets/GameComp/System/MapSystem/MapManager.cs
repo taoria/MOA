@@ -8,8 +8,15 @@ namespace GameComp.System.MapSystem {
     [CreateAssetMenu(menuName = "GameCom/MapManager")]
     public class MapManager:ScriptableObject {
         public GameObject currentTerrain;
-        public static MapManager Instance;
-
+        private static MapManager _instance;
+        public static MapManager Instance { 		get {
+                if (_instance == null) {
+                    _instance = Resources.Load<MapManager>("System/"+nameof(MapManager));
+                }
+                return _instance;
+            }
+            set { _instance = value; } }
+    
         private void OnEnable() {
             if(Instance==null)
              Instance = this;

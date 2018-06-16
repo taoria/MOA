@@ -76,7 +76,7 @@ namespace Code.Item.Data {
         }
         //the Speed of A Character is decided to be 2 * log10(dex+1)
         public float Speed {
-            get { return 2 * Mathf.Log10(Dex + 2); }
+            get { return 1.5f * UnityMath.Sigmoid(Dex-8); }
         }
 
         public float HitMax{

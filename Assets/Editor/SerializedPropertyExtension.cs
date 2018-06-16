@@ -1,5 +1,12 @@
 using UnityEditor;
-
+/// <summary>
+///
+/// copy from wiki
+/// 
+/// </summary>
+/// <see cref="http://wiki.unity3d.com/index.php/SerializableDictionary"/>
+/// <typeparam name="K"></typeparam>
+/// <typeparam name="V"></typeparam>
 public static class SerializedPropertyExtension {
 
     public static int GetObjectCode(this SerializedProperty p) { // Unique code per serialized object and property path

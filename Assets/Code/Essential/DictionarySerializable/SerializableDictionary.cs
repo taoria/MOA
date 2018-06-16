@@ -1,7 +1,14 @@
 using System.Collections.Generic;
  
 using UnityEngine;
- 
+ /// <summary>
+ ///
+ /// copy from wiki
+ /// 
+ /// </summary>
+ /// <see cref="http://wiki.unity3d.com/index.php/SerializableDictionary"/>
+ /// <typeparam name="K"></typeparam>
+ /// <typeparam name="V"></typeparam>
 abstract public class SerializableDictionary<K, V> : ISerializationCallbackReceiver {
     [SerializeField]
     private K[] keys;

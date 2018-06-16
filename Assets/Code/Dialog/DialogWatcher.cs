@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 //开始对话 对话循环 结束对话
-//对话监视器只负责显示对话,输送交互,不负责对话的逻辑
 public class DialogWatcher : BaseWatcher {
 	public GameObject DialogGameObject;
 	// Use this for initialization
@@ -23,15 +22,28 @@ public class DialogWatcher : BaseWatcher {
 			this._speakerLogic = speakerLogic;
 	}
 	//再次说话
-	public void RerollDialogue() {
-		if (_speakerLogic.CurrentNode.Words.Count > ++_dialogueRoller) {
-			Speaking();
+	public void RollDialogue() {
+		var DialogType = _speakerLogic.CurrentNode.DialogType;
+		switch (DialogType) {
+			case "Default": {
+				if (_speakerLogic.CurrentNode.Words.Count > _dialogueRoller) {
+					Speaking();
+					_dialogueRoller++;
+				}
+				else {
+					if (_speakerLogic.TryTransfer()) {
+						_dialogueRoller = 0;
+						Speaking();
+					}
+					else {
+						_finishedDialogue = true;
+						InitWatcherImm();
+						_speakerLogic.ResetDialog();
+					}
+				}
+				break;
+			}
 		}
-		else {
-			_speakerLogic.TryTransfer();
-			Speaking();
-		}
-
 	}
 	//尝试启动对话
 	//等待下一帧.
@@ -39,6 +51,7 @@ public class DialogWatcher : BaseWatcher {
 
 	
 	IEnumerator TalkLinear() {
+		
 		while (speakRollerCol < _currentWords.Length) {
 			GameObject.FindGameObjectWithTag("dialog").GetComponent<Text>().text = _currentWords.Substring(0, speakRollerCol);
 			speakRollerCol++;
@@ -46,9 +59,18 @@ public class DialogWatcher : BaseWatcher {
 		}
 		GameObject.FindGameObjectWithTag("dialog").GetComponent<Text>().text = _currentWords;
 		_finishedSpeaking = true;
-		if (_dialogueRoller >= _speakerLogic.CurrentNode.Words.Count-1) {
-			_finishedDialogue = true;
+		if ( _speakerLogic!=null &&_speakerLogic.CurrentNode != null ) {
+			switch (_speakerLogic.CurrentNode.DialogType) {
+				case "Default": {
+					break;
+				}
+				case "Options": {
+					break;
+				}
+			}
 		}
+
+
 	}
 	void Speaking() {
 		var DialogType = _speakerLogic.CurrentNode.DialogType;
@@ -57,7 +79,7 @@ public class DialogWatcher : BaseWatcher {
 				_currentWords = _speakerLogic.CurrentNode.Words[_dialogueRoller];
 				break;
 			}
-			case "Option": {
+			case "Options": {
 				_currentWords = null;
 				int count = 1;
 				foreach (var str in _speakerLogic.CurrentNode.Words) {
@@ -83,6 +105,7 @@ public class DialogWatcher : BaseWatcher {
 	}
 	private void InitWatcherImm() {
 		speakRollerCol = 0;
+		IsBusy = false;
 		_finishedSpeaking = false;
 		_finishedDialogue = true;
 		_dialogueRoller = 0;
@@ -103,10 +126,13 @@ public class DialogWatcher : BaseWatcher {
 	void Update () {
 		//玩家按下数字键:
 		if (_speakerLogic != null) {
-			if (_speakerLogic.CurrentNode.DialogType.Equals("Options")&&_finishedDialogue&&IsBusy==true) {
+			if (_speakerLogic.CurrentNode.DialogType.Equals("Options")&&IsBusy==true) {
+		
 				for (int i = 0; i < optionsKey.Length; i++) {
 					if (Input.GetKeyDown(optionsKey[i])) {
-						_speakerLogic.TryTransferSpecified("Number"+i,null);
+						Debug.Log("test");
+						_speakerLogic.TryTransferSpecified("Number"+(i+1),null);
+						RollDialogue();
 					}
 				}
 			}
@@ -118,7 +144,7 @@ public class DialogWatcher : BaseWatcher {
 				//打开对话框
 				TurnOn();
 				IsBusy = true;
-				Speaking();
+				RollDialogue();
 				return;
 			}
 			//存在对话逻辑,但是已经在对话.
@@ -129,16 +155,19 @@ public class DialogWatcher : BaseWatcher {
 					speakRollerCol = _currentWords.Length;
 				}
 				else {
-					//已经讲完的话,进入下一句对话.
-					RerollDialogue();
+					//已经讲完的话,进入下一句对话.//或者跳转节点.
+					RollDialogue();
 				}
 				return;
 			}
-			//话说完就关掉吧
-			if (_speakerLogic == null || _finishedDialogue == true) {
-				IsBusy = false;
+			if (_speakerLogic == null && _finishedSpeaking == true) {
 				InitWatcherImm();
 			}
+			return;
+		}
+
+		if (_speakerLogic == null && _finishedSpeaking == true) {
+			InitWatcherImm();
 		}
 	}
 }
