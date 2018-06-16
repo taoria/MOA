@@ -5,6 +5,8 @@ public class NormalCharacter : BaseCharacter {
     public int Facing {
         get { return _facing; }
     }
+
+    public bool Chatting = false;
     public Dictionary<string, float> Friends;
     public object Turn() {
         if (_facing == -1) return _facing = 1;
@@ -32,13 +34,13 @@ public class NormalCharacter : BaseCharacter {
     }
     private void Start() {
         Friends = new Dictionary<string, float>();
-        Debug.Log(this.MeCharacterStatus);
         MeCharacterStatus.Con = 8;
         MeCharacterStatus.Wis = 8;
         MeCharacterStatus.Int = 8;
         MeCharacterStatus.Str = 8;
         MeCharacterStatus.Hit = this.MeCharacterStatus.Str*3 + this.MeCharacterStatus.Con*5;
         MeCharacterStatus.ObjectName = gameObject.name;
+        Friends = new Dictionary<string, float>();
     }
 
     public void MakeFriendWith(BaseCharacter baseCharacter) {

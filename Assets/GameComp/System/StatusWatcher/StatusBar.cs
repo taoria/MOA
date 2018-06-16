@@ -1,8 +1,5 @@
-﻿using JetBrains.Annotations;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-
 public class StatusBar : MonoBehaviour {
     public float StatusBarAmount;
     public bool ShowName=true;

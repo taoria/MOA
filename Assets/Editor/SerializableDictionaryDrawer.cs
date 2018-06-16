@@ -1,5 +1,4 @@
 using System.Collections.Generic;
- 
 using UnityEngine;
 using UnityEditor;
  
@@ -15,8 +14,7 @@ public abstract class SerializableDictionaryDrawer<K, V> : PropertyDrawer {
         return ScriptableObject.CreateInstance<T>();
     }
  
-    public override void OnGUI (Rect position, SerializedProperty property, GUIContent label) {
- 
+    public override void OnGUI (Rect position, SerializedProperty property, GUIContent label) { 
         EditorGUI.BeginProperty(position, label, property);
  
         var firstLine = position;

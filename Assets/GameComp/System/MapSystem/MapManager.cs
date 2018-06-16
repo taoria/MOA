@@ -12,12 +12,19 @@ namespace GameComp.System.MapSystem {
 
         private void OnEnable() {
             if(Instance==null)
-            Instance = this;
+             Instance = this;
         }
 
+        private void Awake() {
+            if(Instance==null)
+                Instance = this;
+        }
+        
         public IEnumerator LoadMap(MapInfo mapInfo) {
             var terrain = Resources.LoadAsync("Maps/" + mapInfo.MapResourcesName+"/Map");
+    
             terrain.completed += (x) => {
+                Debug.Log("test");
                 currentTerrain = (x as ResourceRequest)?.asset as GameObject; DontDestroyOnLoad(currentTerrain);
             };
             yield return terrain;

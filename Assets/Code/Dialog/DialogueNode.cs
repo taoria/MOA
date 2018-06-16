@@ -13,6 +13,8 @@ using UnityEngine.Networking;
 /// <summary>
 /// Xml序列化与反序列化
 /// </summary>
+///
+/// 
 public class XmlUtil
 {
     #region 反序列化
@@ -93,8 +95,9 @@ public  class DialogueNodeTransefer {
 [Serializable]
 public class DialogueNode {
     public delegate object[] ParamsMaker();
-    [XmlArrayItem]public List<string> Words { get; set; }
-    [XmlArrayItem]public List<DialogPair> NextDialogueNode { get; set; }
+    [XmlArrayItem] public List<string> Words { get; set; }
+    [XmlArrayItem] public List<DialogPair> NextDialogueNode { get; set; }
+    [XmlAttribute] public string DialogType = "Default";
     [XmlAttribute] public string NodeName;
 
 }
@@ -117,59 +120,4 @@ public class DialogPair {
 public class DialogPool {
     [XmlArrayItem]public List<DialogueNode> DialogueNodes { get; set; }
     [XmlArrayItem]public List<DialogueNodeTransefer> DialogueNodeTransefers { get; set; }
-}
-[CreateAssetMenu(menuName = "GameCom/DialogueSystem")]
-public class DialogSystem :ScriptableObject {
-    private DialogPool _dialogPools;
-    public DialogSystem Instance;
-    private void OnEnable() {
-        if (Instance == null)
-            Instance = this;
-        _dialogPools = new DialogPool();
-        //
-        _dialogPools.DialogueNodes = new List<DialogueNode>();
-        
-        ///
-        DialogueNode niggerNodeOne =  new DialogueNode();
-        niggerNodeOne.NodeName =  "ChiefHelloWorld";
-        niggerNodeOne.Words = new List<string>();
-        niggerNodeOne.Words.Add("HUMBLE to SKYLORD,I am the tribe leader Wutaka,We summon you here to guide us to build our cicty.");
-        niggerNodeOne.Words.Add("And you can walk around to see the city");
-        niggerNodeOne.NextDialogueNode = new List<DialogPair>();
-        niggerNodeOne.NextDialogueNode.Add(new DialogPair("Default","ChiefRequest"));
-        
-        
-        DialogueNode niggerNodeTwo =  new DialogueNode();
-        niggerNodeTwo.NodeName =  "ChiefRequest";
-        niggerNodeTwo.Words = new List<string>();
-        niggerNodeTwo.Words.Add("HUMBLE to SKYLORD,I am the tribe leader Wutaka,We summon you here to guide us to build our cicty.");
-        niggerNodeTwo.Words.Add("And you can walk around to see the city");
-        niggerNodeTwo.NextDialogueNode = new List<DialogPair>();
-        niggerNodeTwo.NextDialogueNode.Add(new DialogPair("Default","FutureSetting"));
-        _dialogPools.DialogueNodes.Add(niggerNodeTwo);
-        _dialogPools.DialogueNodes.Add(niggerNodeOne);
-     
-        _dialogPools.DialogueNodeTransefers  = new List<DialogueNodeTransefer>();
-        
-        DialogueNodeTransefer dialogueNodeTransefer = new DialogueNodeTransefer();
-        dialogueNodeTransefer.TranseferName = "Default";
-        dialogueNodeTransefer.CondtionName = "null";
-        dialogueNodeTransefer.paramsMaker = "null";
-        _dialogPools.DialogueNodeTransefers.Add(dialogueNodeTransefer);
-        WriteDialogue();
-
-        
-    }
-    public void WriteDialogue() {
-        StreamWriter streamWriter = new StreamWriter("Dialog.xml");
-        string res=XmlUtil.Serialize(typeof(DialogPool), _dialogPools);
-        streamWriter.Write(res);
-        streamWriter.Close();
-        
-    }
-    public void LoadDialogue() {
-        StreamReader sr = new StreamReader("Dialog.xml");
-        _dialogPools = (DialogPool) XmlUtil.Deserialize(typeof(DialogPool),sr.BaseStream);
-        sr.Close();
-    }
 }

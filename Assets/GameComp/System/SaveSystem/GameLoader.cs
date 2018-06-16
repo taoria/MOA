@@ -59,6 +59,8 @@ public class GameLoader : ScriptableObject {
 		}
 
 		LoadingState = "载入游戏地图数据";
+		Debug.Log(MapManager.Instance);
+		
 		var v = MapManager.Instance.LoadMap(LoadConfig.StartingMap);
 		while (v.MoveNext()) {
 			LoadingProgress += 0.01f;
