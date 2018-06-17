@@ -34,7 +34,10 @@ public class PlayerKeyboardController : MonoBehaviour {
 
         var jump = Input.GetAxis("Jump");
         if (jump != 0) {
-            _thisNormalCharacter.Jump();
+            _thisNormalCharacter.Fly();
+        }
+        else {
+            _thisNormalCharacter.Landing();
         }
     }
 }

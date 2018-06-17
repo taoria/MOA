@@ -51,6 +51,12 @@ namespace Code.Item.Data {
             get { return _characterStatusData.ObjectName; }
             set { this._characterStatusData.ObjectName = value; }
         }
+
+        public float PsiCostRate {
+            get { return Mathf.Log(Int + Wis); }
+        }
+
+        public float PsiCurrent { get; set; }
         public float Str {
             get { return _characterStatusData.Str; }
             set { this._characterStatusData.Str = value; }
@@ -76,7 +82,7 @@ namespace Code.Item.Data {
         }
         //the Speed of A Character is decided to be 2 * log10(dex+1)
         public float Speed {
-            get { return 1.5f * UnityMath.Sigmoid(Dex-8); }
+            get { return 1.5f * UnityMath.Sigmoid(Dex-8)*(CostPsi?2f:1f); }
         }
 
         public float HitMax{
@@ -86,6 +92,11 @@ namespace Code.Item.Data {
             get { return Mathf.Log10(Con * Str+100); }
         }
 
+        public float PsiRegenerationRate {
+            get {
+                return Int + Wis;
+            }
+        }
         //设置某个属性的值,目前仅支持对浮点值的修改
         public void SetValue(string valueName,object value) {
             try {
@@ -117,10 +128,23 @@ namespace Code.Item.Data {
         private void Start() {
             FreePoint = 10;
             Hit = HitMax;
+            PsiCurrent = Psi;
         }
 
+        public bool CostPsi { get; set; } = false;
         // Update is called once per frame
         private void Update() {
+            if (CostPsi) {
+                PsiCurrent -= PsiCostRate * Time.deltaTime;
+                
+            }
+            else {
+                if(PsiCurrent<Psi)
+                PsiCurrent += PsiRegenerationRate * Time.deltaTime;
+                else {
+                    PsiCurrent = Psi;
+                }
+            }
         }
     }
     [Serializable]

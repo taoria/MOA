@@ -42,7 +42,12 @@ public class NormalCharacter : BaseCharacter {
         MeCharacterStatus.ObjectName = gameObject.name;
         Friends = new Dictionary<string, float>();
     }
-
+    public void Fly() {
+        MeCharacterStatus.CostPsi = true;
+        if (MeCharacterStatus.PsiCurrent > 0) {
+            Jump();
+        }
+    }
     public void MakeFriendWith(BaseCharacter baseCharacter) {
         if (Friends.ContainsKey(baseCharacter.name)) {
             Debug.LogError("You already know :" + baseCharacter.name);
@@ -57,11 +62,17 @@ public class NormalCharacter : BaseCharacter {
     }
     public object Jump() {
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(this.gameObject.GetComponent<Rigidbody2D>().velocity.x,MeCharacterStatus.Jump);
-        Debug.Log(MeCharacterStatus.Jump);
         return null;
     }
     
     public object Attack() {
         return null;
+    }
+
+    public void Update() {
+    }
+
+    public void Landing() {
+        MeCharacterStatus.CostPsi = false;
     }
 }

@@ -35,10 +35,11 @@ public class StatusBar : MonoBehaviour {
         }
 
         var statusText = transform.Find("StatusText").gameObject.GetComponent<Text>();
-    
-             if (watchStatusObject != null) statusText.text = (ShowName?ShowingName:"") + (ShowValue? (ShowName?":"+watchStatusObject:watchStatusObject):"");
-         
-       
-        
+
+         if (watchStatusObject != null) {
+             float f = (float) watchStatusObject;
+             int res = (int) f;
+             statusText.text = (ShowName?ShowingName:"") + (ShowValue? (ShowName?":"+res:res.ToString()):"");
+         }
     }
 }

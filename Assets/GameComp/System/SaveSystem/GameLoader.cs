@@ -2,17 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameComp.System.MapSystem;
+using GameComp.System.SaveSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(menuName =  "GameInfo/LoadConfig")]
-[Serializable]
-public class LoadConfig:ScriptableObject {
-	public string ConfigName;
-	public bool NewGame;
-	public MapInfo StartingMap;
-	public string SaveFilePath;
-}
+
 [CreateAssetMenu(menuName = "GameCom/GameLoader")]
 public class GameLoader : ScriptableObject {
 	public float LoadingProgress;

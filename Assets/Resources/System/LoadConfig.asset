@@ -8,10 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ef644e6d9f044cd4a3cdb52e05d949f3, type: 3}
   m_Name: LoadConfig
-  m_EditorClassIdentifier: Assembly-CSharp::LoadConfig
-  ConfigName: LoadConfigDefault
+  m_EditorClassIdentifier: 
+  ConfigName: LoadConfig
   NewGame: 0
   StartingMap: {fileID: 11400000, guid: a943a701678878f4cb1e1b41dc3a7190, type: 2}
   SaveFilePath: 
