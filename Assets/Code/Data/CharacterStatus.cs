@@ -7,6 +7,10 @@ using Object = System.Object;
 namespace Code.Item.Data {
     public class CharacterStatus : MonoBehaviour {
         //真实数据的数据实体
+        public delegate object CharacterStatusEvent(params object[] objects);
+
+        public CharacterStatusEvent WhenPsiZero;
+        public CharacterStatusEvent WhenHitZero;
         public CharacterStatusData _characterStatusData = new CharacterStatusData();
         //保存人物数据给存档文件
         public void SaveToSaveData(SaveData saveData) {
@@ -34,6 +38,11 @@ namespace Code.Item.Data {
         public float Cha {
             get { return _characterStatusData.Cha; }
             set { this._characterStatusData.Cha = value; }
+        }
+        public float AttackDura {
+            get {
+                return 1f / Mathf.Log(10 + Dex);
+            }
         }
         public float Con {
             get { return _characterStatusData.Con; }
@@ -136,7 +145,9 @@ namespace Code.Item.Data {
         private void Update() {
             if (CostPsi) {
                 PsiCurrent -= PsiCostRate * Time.deltaTime;
-                
+                if (PsiCurrent <= 0) {
+                    WhenPsiZero(null);
+                }
             }
             else {
                 if(PsiCurrent<Psi)

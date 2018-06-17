@@ -33,11 +33,20 @@ public class PlayerKeyboardController : MonoBehaviour {
         }
 
         var jump = Input.GetAxis("Jump");
-        if (jump != 0) {
+        if (Input.GetKeyDown(KeyCode.K)) {
             _thisNormalCharacter.Fly();
         }
+        if (jump != 0) {
+            _thisNormalCharacter.Jump(jump);
+        }
         else {
-            _thisNormalCharacter.Landing();
+            _thisNormalCharacter.Flying(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+        }
+        if (Input.GetAxis("Fire1")>0) {
+            _thisNormalCharacter.Attack();
+        }
+        else {
+            _thisNormalCharacter.CancelAttack();
         }
     }
 }

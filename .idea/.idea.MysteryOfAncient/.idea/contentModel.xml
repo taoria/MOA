@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Administrator\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_MysteryOfAncient.-2037168947.00" t="ExcludeRecursive" />
+    <e p="D:\Users\Administrator\MysteryOfAncient" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Code" t="Include">
+          <e p="Character" t="Include">
+            <e p="BaseCharacter.cs" t="Include" />
+            <e p="CharacterManager" t="Include">
+              <e p="CharacterManager.cs" t="Include" />
+              <e p="CharacterTrigger.cs" t="Include" />
+            </e>
+            <e p="Hero.cs" t="Include" />
+            <e p="NormalCharacter.cs" t="Include" />
+            <e p="NPC" t="Include">
+              <e p="NonPlayerNormalCharacter.cs" t="Include" />
+              <e p="SpeakerLogic.cs" t="Include" />
+            </e>
+            <e p="PlayerKeyboardController.cs" t="Include" />
+            <e p="Skill" t="Include">
+              <e p="BlueFire.cs" t="Include" />
+            </e>
+            <e p="SmoothCamera.cs" t="Include" />
+          </e>
+          <e p="Data" t="Include">
+            <e p="CharacterInfo.cs" t="Include" />
+            <e p="CharacterStatus.cs" t="Include" />
+            <e p="DialogData.cs" t="Include" />
+            <e p="ItemStatus.cs" t="Include" />
+            <e p="MapInfo.cs" t="Include" />
+            <e p="SaveData.cs" t="Include" />
+          </e>
+          <e p="Dialog" t="Include">
+            <e p="DialogueNode.cs" t="Include" />
+            <e p="DialogueSystem.cs" t="Include" />
+            <e p="DialogWatcher.cs" t="Include" />
+          </e>
+          <e p="Essential" t="Include">
+            <e p="DictionarySerializable" t="Include">
+              <e p="SerializableDictionary.cs" t="Include" />
+              <e p="SerializableDictionaryImplementations.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Example.cs" t="Include" />
+        </e>
+        <e p="Editor" t="Include">
+          <e p="SerializableDictionaryDrawer.cs" t="Include" />
+          <e p="SerializableDictionaryDrawerImplementations.cs" t="Include" />
+          <e p="SerializedPropertyExtension.cs" t="Include" />
+        </e>
+        <e p="GameComp" t="Include">
+          <e p="Console" t="Include">
+            <e p="ConsoleCaller.cs" t="Include" />
+            <e p="ConsoleScript.cs" t="Include" />
+          </e>
+          <e p="system" t="Include">
+            <e p="ConditionSystem" t="Include">
+              <e p="ConditionManager.cs" t="Include" />
+            </e>
+            <e p="InputSystem.cs" t="Include" />
+            <e p="LifeCycleSystem" t="Include">
+              <e p="LifeCycle.cs" t="Include" />
+              <e p="StateBar.cs" t="Include" />
+            </e>
+            <e p="MapSystem" t="Include">
+              <e p="MapCreator.cs" t="Include" />
+              <e p="MapManager.cs" t="Include" />
+            </e>
+            <e p="SaveSystem" t="Include">
+              <e p="GameLoader.cs" t="Include" />
+              <e p="LoadConfig.cs" t="Include" />
+              <e p="MenuWatcher.cs" t="Include" />
+            </e>
+            <e p="StatusWatcher" t="Include">
+              <e p="StatusBar.cs" t="Include" />
+              <e p="StatusWatcher.cs" t="Include" />
+            </e>
+            <e p="UnityMath.cs" t="Include" />
+            <e p="WathcerSystem" t="Include">
+              <e p="BaseWatcher.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="JsonDotNet" t="Include">
+          <e p="link.xml" t="Include" />
+        </e>
+        <e p="Scenes" t="Include">
+          <e p="StartGame.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="MysteryOfAncient.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>

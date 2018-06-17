@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<DialogPool 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <DialogueNodes>
+    <DialogueNode NodeName="ChiefAnswerEast" DialogType="Default">
+      <Words>
+        <string>你好啊,东方人</string>
+      </Words>
+      <NextDialogueNode></NextDialogueNode>
+    </DialogueNode>
+    <DialogueNode NodeName="ChiefAnswerLocal" DialogType="Default">
+      <Words>
+        <string>你好啊,我的臣民</string>
+      </Words>
+      <NextDialogueNode></NextDialogueNode>
+    </DialogueNode>
+    <DialogueNode NodeName="ChiefAnswerUnkown" DialogType="Default">
+      <Words>
+        <string>有趣</string>
+      </Words>
+      <NextDialogueNode></NextDialogueNode>
+    </DialogueNode>
+    <DialogueNode NodeName="ChiefHelloWorld">
+      <Words>
+        <string>HUMBLE to SKYLORD,I am King the Uruk,Guide us,build your heaven Empire!</string>
+        <string>And you can walk around to see your people.</string>
+        <string>farewell ,My lord .</string>
+      </Words>
+      <NextDialogueNode>
+        <DialogPair TranseferName="Default" NodeName="ChiefOptions" Priority="0" />
+      </NextDialogueNode>
+    </DialogueNode>
+    <DialogueNode NodeName="ChiefMain">
+      <Words>
+        <string>你吼啊,我是阿卡德帝国的国王萨尔贡</string>
+        <string>欢迎来到阿卡德,让我先问你一个问题吧</string>
+        <string>你来自哪里</string>
+      </Words>
+      <NextDialogueNode>
+        <DialogPair TranseferName="Default" NodeName="ChiefOptions" Priority="0" />
+      </NextDialogueNode>
+    </DialogueNode>
+    <DialogueNode NodeName="ChiefOptions" DialogType="Options">
+      <Words>
+        <string>我来自神奇的东方</string>
+        <string>我是阿卡德王国的本地人</string>
+        <string>我不知道我来自哪</string>
+      </Words>
+      <NextDialogueNode>
+        <DialogPair TranseferName="Number1" NodeName="ChiefAnswerEast" Priority="0" />
+        <DialogPair TranseferName="Number2" NodeName="ChiefAnswerLocal" Priority="0" />
+        <DialogPair TranseferName="Number3" NodeName="ChiefAnswerUnkown" Priority="0" />
+      </NextDialogueNode>
+    </DialogueNode>
+  </DialogueNodes>
+  <DialogueNodeTransefers>
+    <DialogueNodeTransefer TranseferName="Default">
+      <CondtionName>null</CondtionName>
+      <paramsMaker>null</paramsMaker>
+    </DialogueNodeTransefer>
+    <DialogueNodeTransefer TranseferName="Number1">
+      <CondtionName>null</CondtionName>
+      <paramsMaker>null</paramsMaker>
+    </DialogueNodeTransefer>
+    <DialogueNodeTransefer TranseferName="Number2">
+      <CondtionName>null</CondtionName>
+      <paramsMaker>null</paramsMaker>
+    </DialogueNodeTransefer>
+    <DialogueNodeTransefer TranseferName="Number3">
+      <CondtionName>null</CondtionName>
+      <paramsMaker>null</paramsMaker>
+    </DialogueNodeTransefer>
+    <DialogueNodeTransefer TranseferName="Number4">
+      <CondtionName>null</CondtionName>
+      <paramsMaker>null</paramsMaker>
+    </DialogueNodeTransefer>
+  </DialogueNodeTransefers>
+</DialogPool>

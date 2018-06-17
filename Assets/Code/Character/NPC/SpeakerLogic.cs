@@ -16,6 +16,7 @@ public class SpeakerLogic : MonoBehaviour {
 		CurrentNode = DialogueSystem.Instance.GetNode("ChiefMain");
 	}
 	private void OnTriggerEnter2D(Collider2D other) {
+		
 		if (other.gameObject.name.Equals("Hero")) {
 			speakTo = other.gameObject.GetComponent<NormalCharacter>();
 			ResetDialog();
@@ -25,7 +26,6 @@ public class SpeakerLogic : MonoBehaviour {
 		}
 	}
 	public void Start() {
-		Debug.Log(DialogueSystem.Instance);
 		CurrentNode = DialogueSystem.Instance.GetNode("ChiefMain");
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f,0.5f,0f);
 	}

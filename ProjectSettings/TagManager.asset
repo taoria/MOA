@@ -6,6 +6,7 @@ TagManager:
   tags:
   - dialog
   - DialogBox
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - background
   - Entity
   - Hidden
-  - 
+  - Terrain
   - 
   - 
   - 
